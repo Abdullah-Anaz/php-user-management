@@ -1,0 +1,16 @@
+.form-container {
+    display: block;
+    max-width: 40%;
+    margin: 50px auto;
+}
+
+h2 {
+    font-size: 32px;
+    margin-bottom: 15px;
+}
+
+@media  (max-width: 768px) {
+    .form-container {
+        max-width: 80%;
+    }
+}
