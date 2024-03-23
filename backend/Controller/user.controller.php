@@ -11,8 +11,9 @@ class UserController
         $this->userService = new UserService();
     }
 
-    public function addUser($data)
+    public function addUser()
     {
+        $data = json_decode(file_get_contents("php://input"));
         if (isset($data->name) && isset($data->email) && !empty(trim($data->name)) && !empty(trim($data->email))) {
             $result = $this->userService->addUser($data->name, $data->email);
             if ($result) {
@@ -25,8 +26,9 @@ class UserController
         }
     }
 
-    public function deleteUser($data)
+    public function deleteUser()
     {
+        $data = json_decode(file_get_contents("php://input"));
         if (isset($data->user_id) && is_numeric($data->user_id)) {
             $result = $this->userService->deleteUser($data->user_id);
 
@@ -40,8 +42,9 @@ class UserController
         }
     }
 
-    public function editUser($data)
+    public function editUser()
     {
+        $data = json_decode(file_get_contents("php://input"));
         if (isset($data->user_id) && !empty(trim($data->user_id)) && isset($data->name) && isset($data->email) && !empty(trim($data->name)) && !empty(trim($data->email))) {
             $result = $this->userService->editUser($data->user_id, $data->name, $data->email);
             if ($result) {
@@ -54,8 +57,9 @@ class UserController
         }
     }
 
-    public function getUser($user_id)
+    public function getUser()
     {
+        $user_id = $_GET['user_id'];
         if (isset($user_id) && !empty(trim($user_id))) {
             $result = $this->userService->getUser($user_id);
 

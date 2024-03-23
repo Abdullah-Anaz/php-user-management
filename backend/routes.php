@@ -10,19 +10,13 @@ $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 require_once 'controller/user.controller.php';
 
-$data = json_decode(file_get_contents("php://input"));
-
 $userController = new UserController();
 
 switch ($_SERVER['REQUEST_METHOD']) {
     case 'GET':
         switch ($_GET['action']) {
             case 'getUser':
-                if (isset($_GET['user_id'])) {
-                    $userController->getUser($_GET['user_id']);
-                } else {
-                    echo json_encode(["success" => false, "message" => "User ID not provided"]);
-                }
+                $userController->getUser();
                 break;
             case 'getAllUsers':
                 $userController->getAllUsers();
@@ -36,7 +30,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
     case 'POST':
         switch ($_GET['action']) {
             case 'addUser':
-                $userController->addUser($data);
+                $userController->addUser();
                 break;
             default:
                 echo json_encode(["success" => false, "message" => "Invalid action for POST request"]);
@@ -47,7 +41,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
     case 'PUT':
         switch ($_GET['action']) {
             case 'editUser':
-                $userController->editUser($data);
+                $userController->editUser();
                 break;
             default:
                 echo json_encode(["success" => false, "message" => "Invalid action for PUT request"]);
@@ -58,7 +52,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
     case 'DELETE':
         switch ($_GET['action']) {
             case 'deleteUser':
-                $userController->deleteUser($data);
+                $userController->deleteUser();
                 break;
             default:
                 echo json_encode(["success" => false, "message" => "Invalid action for DELETE request"]);
