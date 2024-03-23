@@ -13,8 +13,8 @@ This is a  simple CRUD (Create, Read, Update, Delete) application built with PHP
 
 ## Usage
 
+- View all users
 - Add a new user: Fill out the form with the user's name and email, and click "Add User".
-- View all users: Click on the "View Users" link to see a list of all users.
 - Edit user: Click on the "Edit" button next to a user to edit their details.
 - Delete user: Click on the "Delete" button next to a user to delete them from the system.
 
